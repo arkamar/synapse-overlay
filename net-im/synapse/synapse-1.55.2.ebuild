@@ -55,7 +55,7 @@ RDEPEND="${DEPEND}
 		dev-python/pyopenssl[${PYTHON_USEDEP}]
 		dev-python/pyyaml[${PYTHON_USEDEP}]
 		dev-python/service_identity[${PYTHON_USEDEP}]
-		dev-python/signedjson[${PYTHON_USEDEP}]
+		<=dev-python/signedjson-1.1.1[${PYTHON_USEDEP}]
 		dev-python/sortedcontainers[${PYTHON_USEDEP}]
 		dev-python/treq[${PYTHON_USEDEP}]
 		dev-python/twisted[${PYTHON_USEDEP}]
