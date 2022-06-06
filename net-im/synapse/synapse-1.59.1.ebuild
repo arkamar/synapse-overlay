@@ -83,6 +83,7 @@ python_install() {
 	keepdir /var/{lib,log}/synapse /etc/synapse
 	fowners synapse:synapse /var/{lib,log}/synapse /etc/synapse
 	fperms 0750 /var/{lib,log}/synapse /etc/synapse
+	newinitd "${FILESDIR}/${PN}.initd" "${PN}"
 }
 
 pkg_postinst() {
