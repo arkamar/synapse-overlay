@@ -10,7 +10,10 @@ DISTUTILS_USE_PEP517=poetry
 inherit distutils-r1 optfeature
 
 DESCRIPTION="Reference implementation of Matrix homeserver"
-HOMEPAGE="https://matrix.org/ https://github.com/matrix-org/synapse/"
+HOMEPAGE="
+	https://matrix.org/
+	https://github.com/matrix-org/synapse/
+"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
