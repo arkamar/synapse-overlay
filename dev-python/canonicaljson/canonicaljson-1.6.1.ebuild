@@ -9,7 +9,10 @@ PYTHON_COMPAT=( python3_{9..11} )
 inherit distutils-r1
 
 DESCRIPTION="Canonical JSON"
-HOMEPAGE="https://github.com/matrix-org/python-canonicaljson https://pypi.python.org/pypi/canonicaljson"
+HOMEPAGE="
+	https://github.com/matrix-org/python-canonicaljson
+	https://pypi.python.org/pypi/canonicaljson
+"
 SRC_URI="https://github.com/matrix-org/python-canonicaljson/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 S="${WORKDIR}/python-${P}"

@@ -9,7 +9,10 @@ PYTHON_COMPAT=( python3_{9..11} )
 inherit distutils-r1
 
 DESCRIPTION="Signs JSON objects with ED25519 signatures."
-HOMEPAGE="https://github.com/matrix-org/python-signedjson https://pypi.python.org/pypi/signedjson"
+HOMEPAGE="
+	https://github.com/matrix-org/python-signedjson
+	https://pypi.python.org/pypi/signedjson
+"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="Apache-2.0"

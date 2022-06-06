@@ -10,7 +10,6 @@ inherit distutils-r1
 
 DESCRIPTION="Common code for Synapse, Sydent and Sygnal"
 HOMEPAGE="
-	https://matrix.org/
 	https://github.com/matrix-org/matrix-python-common
 	https://pypi.org/project/matrix-common/
 "
