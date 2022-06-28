@@ -45,7 +45,7 @@ RDEPEND="${DEPEND}
 		dev-python/ijson[${PYTHON_USEDEP}]
 		>=dev-python/jinja-3.0[${PYTHON_USEDEP}]
 		dev-python/jsonschema[${PYTHON_USEDEP}]
-		=dev-python/matrix-common-1.2*[${PYTHON_USEDEP}]
+		>=dev-python/matrix-common-1.2.1[${PYTHON_USEDEP}]
 		dev-python/msgpack[${PYTHON_USEDEP}]
 		dev-python/netaddr[${PYTHON_USEDEP}]
 		dev-python/packaging[${PYTHON_USEDEP}]
