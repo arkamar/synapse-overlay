@@ -74,7 +74,7 @@ BDEPEND="
 "
 
 python_test() {
-	"${EPYTHON}" -m unittest discover -v -t . -s tests || die "Tests fail with ${EPYTHON}"
+	"${EPYTHON}" -m twisted.trial tests || die "Tests failed with ${EPYTHON}"
 }
 
 python_install() {
