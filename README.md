@@ -5,10 +5,9 @@ The purpose of this overlay is to prepare and polish `matrix-synapse` related eb
 ## Remarks
 
 - All ebuilds use new `PEP517`.
-- Tests mostly work, with following exceptions:
+- Tests mostly work, with following exceptions (related ebuilds set `RESTRICT="test"`):
 	- `dev-python/pymacaroons` - it requires `<dev-python/hypothesis-2.0.0` which is not available in `::gentoo` anymore.
 	- `dev-python/frozendict` - most of tests pass, but 7 of 477 tests fail with py3.9 and 1 of 483 fails with py3.10. py3.11 is not supported yet.
-	- `net-im/synapse` - most of tests pass, only few fail `Ran 2469 tests (failures=3, errors=3, skipped=156)`.
 - UID/GID in `acct-{user,group}/synapse` are set to `-1` in this overlay.
 - `net-im/synapse` is usually released every 14 days and ebuild version bumps are pretty straight forward.
 
