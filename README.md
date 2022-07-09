@@ -1,6 +1,6 @@
 # Synapse overlay incubator
 
-The purpose of this overlay is to prepare and polish `matrix-synapse` related ebuilds for pushing it to the main `::gentoo` overlay in PR https://github.com/gentoo/gentoo/pull/25776. It is related to the https://bugs.gentoo.org/608510 issue.
+The purpose of this overlay was to prepare and polish `matrix-synapse` related ebuilds for pushing it to the main `::gentoo` overlay in PR https://github.com/gentoo/gentoo/pull/25776 and close related https://bugs.gentoo.org/608510 issue. The overaly served its purpose well, `net-im/synapse` is finally in `::gentoo`! There is probably no need to use this overlay anymore, however, it is still maintained.
 
 ## Remarks
 
