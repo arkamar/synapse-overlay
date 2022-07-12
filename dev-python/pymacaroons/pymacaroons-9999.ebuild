@@ -34,5 +34,5 @@ BDEPEND="test? (
 python_test() {
 	# The package also contains property_tests, however, they are incompatible
 	# with dev-python/hypothesis in gentoo. The package requires too old version.
-	nosetests -d -v tests/functional_tests || die "Tests failed with ${EPYTHON}"
+	"${EPYTHON}" -m nose -v tests/functional_tests || die "Tests failed with ${EPYTHON}"
 }
