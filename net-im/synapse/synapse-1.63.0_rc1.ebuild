@@ -27,7 +27,7 @@ fi
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="test"
+IUSE="postgres test"
 RESTRICT="!test? ( test )"
 
 DEPEND="
@@ -64,6 +64,7 @@ RDEPEND="${DEPEND}
 		dev-python/twisted[${PYTHON_USEDEP}]
 		dev-python/typing-extensions[${PYTHON_USEDEP}]
 		dev-python/unpaddedbase64[${PYTHON_USEDEP}]
+		postgres? ( dev-python/psycopg:2[${PYTHON_USEDEP}] )
 	')
 "
 BDEPEND="
