@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{9..10} )
 DISTUTILS_SINGLE_IMPL=1
 DISTUTILS_USE_PEP517=poetry
 
-inherit distutils-r1 optfeature
+inherit distutils-r1 optfeature systemd
 
 DESCRIPTION="Reference implementation of Matrix homeserver"
 HOMEPAGE="
@@ -27,7 +27,7 @@ fi
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="postgres test"
+IUSE="postgres systemd test"
 RESTRICT="!test? ( test )"
 
 DEPEND="
@@ -65,6 +65,7 @@ RDEPEND="${DEPEND}
 		dev-python/typing-extensions[${PYTHON_USEDEP}]
 		dev-python/unpaddedbase64[${PYTHON_USEDEP}]
 		postgres? ( dev-python/psycopg:2[${PYTHON_USEDEP}] )
+		systemd? ( dev-python/python-systemd[${PYTHON_USEDEP}] )
 	')
 "
 BDEPEND="
@@ -84,6 +85,7 @@ python_install() {
 	fowners synapse:synapse /var/{lib,log}/synapse /etc/synapse
 	fperms 0750 /var/{lib,log}/synapse /etc/synapse
 	newinitd "${FILESDIR}/${PN}.initd" "${PN}"
+	systemd_dounit "${FILESDIR}/synapse.service"
 }
 
 pkg_postinst() {
