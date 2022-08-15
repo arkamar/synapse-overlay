@@ -69,32 +69,11 @@ RDEPEND="${DEPEND}
 	')
 "
 BDEPEND="
-	test? (
-		$(python_gen_cond_dep '
-			dev-python/idna[${PYTHON_USEDEP}]
-			dev-python/parameterized[${PYTHON_USEDEP}]
-		')
-		postgres? ( dev-db/postgresql[server] )
-	)
+	test? ( $(python_gen_cond_dep '
+		dev-python/idna[${PYTHON_USEDEP}]
+		dev-python/parameterized[${PYTHON_USEDEP}]
+	') )
 "
-
-src_test() {
-	if use postgres; then
-		initdb -D "${T}/pgsql" || die
-		pg_ctl -w -D "${T}/pgsql" start \
-			-o "-h '' -k '${T}'" || die
-		createdb -h "${T}" synapse_test || die
-
-		local -x SYNAPSE_POSTGRES=1
-		local -x SYNAPSE_POSTGRES_HOST="${T}"
-	fi
-
-	distutils-r1_src_test
-
-	if use postgres; then
-		pg_ctl -w -D "${T}/pgsql" stop || die
-	fi
-}
 
 python_test() {
 	"${EPYTHON}" -m twisted.trial tests || die "Tests failed with ${EPYTHON}"
