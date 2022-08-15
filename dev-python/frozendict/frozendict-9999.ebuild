@@ -18,6 +18,8 @@ EGIT_REPO_URI="https://github.com/Marco-Sulla/python-frozendict/"
 LICENSE="MIT"
 SLOT="0"
 
+distutils_enable_tests pytest
+
 python_test() {
 	cd "${T}" || die
 	epytest "${S}/test"
