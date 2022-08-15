@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{9..10} )
 DISTUTILS_SINGLE_IMPL=1
 DISTUTILS_USE_PEP517=poetry
 
-inherit distutils-r1 optfeature systemd
+inherit distutils-r1 multiprocessing optfeature systemd
 
 DESCRIPTION="Reference implementation of Matrix homeserver"
 HOMEPAGE="
@@ -97,7 +97,7 @@ src_test() {
 }
 
 python_test() {
-	"${EPYTHON}" -m twisted.trial tests || die "Tests failed with ${EPYTHON}"
+	"${EPYTHON}" -m twisted.trial -j "$(makeopts_jobs)" tests || die "Tests failed with ${EPYTHON}"
 }
 
 python_install() {
