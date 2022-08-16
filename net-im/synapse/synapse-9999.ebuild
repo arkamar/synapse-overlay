@@ -54,6 +54,7 @@ RDEPEND="${DEPEND}
 		dev-python/prometheus_client[${PYTHON_USEDEP}]
 		dev-python/pyasn1-modules[${PYTHON_USEDEP}]
 		dev-python/pyasn1[${PYTHON_USEDEP}]
+		dev-python/pydantic[${PYTHON_USEDEP}]
 		dev-python/pymacaroons[${PYTHON_USEDEP}]
 		dev-python/pyopenssl[${PYTHON_USEDEP}]
 		dev-python/pyyaml[${PYTHON_USEDEP}]
