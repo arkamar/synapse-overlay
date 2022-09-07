@@ -81,11 +81,12 @@ BDEPEND="
 
 src_test() {
 	if use postgres; then
-		initdb -D "${T}/pgsql" || die
-		pg_ctl -w -D "${T}/pgsql" start \
-			-o "-h '' -k '${T}'" || die
-		createdb -h "${T}" synapse_test || die
+		initdb --pgdata="${T}/pgsql" || die
+		pg_ctl --wait --pgdata="${T}/pgsql" start \
+			--options="-h '' -k '${T}'" || die
+		createdb --host="${T}" synapse_test || die
 
+		# See https://matrix-org.github.io/synapse/latest/development/contributing_guide.html#running-tests-under-postgresql
 		local -x SYNAPSE_POSTGRES=1
 		local -x SYNAPSE_POSTGRES_HOST="${T}"
 	fi
@@ -93,7 +94,7 @@ src_test() {
 	distutils-r1_src_test
 
 	if use postgres; then
-		pg_ctl -w -D "${T}/pgsql" stop || die
+		pg_ctl --wait --pgdata="${T}/pgsql" stop || die
 	fi
 }
 
