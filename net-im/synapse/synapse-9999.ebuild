@@ -114,14 +114,22 @@ python_install() {
 pkg_postinst() {
 	optfeature "VoIP relaying on your homeserver with turn" net-im/coturn
 
-	einfo "In order to generate initial configuration run:"
-	einfo "sudo -u synapse synapse_homeserver \\"
-	einfo "    --server-name matrix.domain.tld \\"
-	einfo "    --config-path /etc/synapse/homeserver.yaml \\"
-	einfo "    --generate-config \\"
-	einfo "    --data-directory /var/lib/synapse \\"
-	einfo "    --report-stats=no"
-	einfo
-	einfo "See also upgrade notes:"
-	einfo "https://github.com/matrix-org/synapse/blob/develop/docs/upgrade.md"
+	if [[ -z "${REPLACING_VERSIONS}" ]]; then
+		einfo
+		elog "In order to generate initial configuration run:"
+		elog "sudo -u synapse synapse_homeserver \\"
+		elog "    --server-name matrix.domain.tld \\"
+		elog "    --config-path /etc/synapse/homeserver.yaml \\"
+		elog "    --generate-config \\"
+		elog "    --data-directory /var/lib/synapse \\"
+		elog "    --report-stats=no"
+		einfo
+	else
+		einfo
+		einfo "Please refer to upgrade notes if any special steps are required"
+		einfo "to upgrade from the version you currently have installed:"
+		einfo
+		einfo "  https://github.com/matrix-org/synapse/blob/develop/docs/upgrade.md"
+		einfo
+	fi
 }
