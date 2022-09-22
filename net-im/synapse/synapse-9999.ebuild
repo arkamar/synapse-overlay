@@ -7,25 +7,18 @@ PYTHON_COMPAT=( python3_{9..10} )
 DISTUTILS_SINGLE_IMPL=1
 DISTUTILS_USE_PEP517=poetry
 
-inherit distutils-r1 multiprocessing optfeature systemd
+inherit cargo distutils-r1 git-r3 multiprocessing optfeature systemd
 
 DESCRIPTION="Reference implementation of Matrix homeserver"
 HOMEPAGE="
 	https://matrix.org/
 	https://github.com/matrix-org/synapse/
 "
-
-if [[ ${PV} == 9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/matrix-org/${PN}.git"
-else
-	MY_PV="${PV/_rc/rc}"
-	SRC_URI="https://github.com/matrix-org/${PN}/archive/v${MY_PV}.tar.gz -> ${P}.gh.tar.gz"
-	S="${WORKDIR}/${PN}-${MY_PV}"
-	KEYWORDS="~amd64 ~ppc64"
-fi
+EGIT_REPO_URI="https://github.com/matrix-org/${PN}.git"
 
 LICENSE="Apache-2.0"
+# Licenses for Rust extension
+LICENSE+=" Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 MIT Unicode-DFS-2016 Unlicense"
 SLOT="0"
 IUSE="postgres systemd test"
 RESTRICT="!test? ( test )"
@@ -45,7 +38,7 @@ RDEPEND="${DEPEND}
 		dev-python/ijson[${PYTHON_USEDEP}]
 		>=dev-python/jinja-3.0[${PYTHON_USEDEP}]
 		dev-python/jsonschema[${PYTHON_USEDEP}]
-		>=dev-python/matrix-common-1.2.1[${PYTHON_USEDEP}]
+		>=dev-python/matrix-common-1.3.0[${PYTHON_USEDEP}]
 		dev-python/msgpack[${PYTHON_USEDEP}]
 		dev-python/netaddr[${PYTHON_USEDEP}]
 		dev-python/packaging[${PYTHON_USEDEP}]
@@ -70,6 +63,7 @@ RDEPEND="${DEPEND}
 	')
 "
 BDEPEND="
+	$(python_gen_cond_dep 'dev-python/setuptools-rust[${PYTHON_USEDEP}]')
 	test? (
 		$(python_gen_cond_dep '
 			dev-python/idna[${PYTHON_USEDEP}]
@@ -78,6 +72,14 @@ BDEPEND="
 		postgres? ( dev-db/postgresql[server] )
 	)
 "
+
+# Rust extension
+QA_FLAGS_IGNORED="usr/lib/python3.*/site-packages/synapse/synapse_rust.abi3.so"
+
+src_unpack() {
+	git-r3_src_unpack
+	cargo_live_src_unpack
+}
 
 src_test() {
 	if use postgres; then
@@ -90,6 +92,10 @@ src_test() {
 		local -x SYNAPSE_POSTGRES=1
 		local -x SYNAPSE_POSTGRES_HOST="${T}"
 	fi
+
+	# This move is necessary otherwise python is not able to locate
+	# synapse_rust.abi3.so.
+	mv synapse{,.hidden} || die
 
 	distutils-r1_src_test
 
