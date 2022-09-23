@@ -65,7 +65,7 @@ SRC_URI="
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 LICENSE="Apache-2.0"
-# Licenses for Rust extension
+# Additional licenses needed for Rust crates
 LICENSE+=" Apache-2.0-with-LLVM-exceptions BSD MIT Unicode-DFS-2016"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc64"

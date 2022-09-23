@@ -17,7 +17,7 @@ HOMEPAGE="
 EGIT_REPO_URI="https://github.com/matrix-org/${PN}.git"
 
 LICENSE="Apache-2.0"
-# Licenses for Rust extension
+# Additional licenses needed for Rust crates
 LICENSE+=" Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 MIT Unicode-DFS-2016 Unlicense"
 SLOT="0"
 IUSE="postgres systemd test"
