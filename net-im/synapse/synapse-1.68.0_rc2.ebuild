@@ -18,9 +18,9 @@ CRATES="
 	generic-array-0.14.6
 	hex-0.4.3
 	indoc-1.0.7
-	libc-0.2.133
-	lock_api-0.4.8
-	once_cell-1.14.0
+	libc-0.2.132
+	lock_api-0.4.7
+	once_cell-1.13.1
 	parking_lot-0.12.1
 	parking_lot_core-0.9.3
 	proc-macro2-1.0.43
@@ -34,10 +34,10 @@ CRATES="
 	scopeguard-1.1.0
 	smallvec-1.9.0
 	subtle-2.4.1
-	syn-1.0.100
+	syn-1.0.99
 	target-lexicon-0.12.4
 	typenum-1.15.0
-	unicode-ident-1.0.4
+	unicode-ident-1.0.3
 	unindent-0.1.10
 	version_check-0.9.4
 	windows-sys-0.36.1
