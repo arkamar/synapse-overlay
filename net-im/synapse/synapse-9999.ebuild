@@ -17,8 +17,10 @@ HOMEPAGE="
 EGIT_REPO_URI="https://github.com/matrix-org/${PN}.git"
 
 LICENSE="Apache-2.0"
-# Additional licenses needed for Rust crates
-LICENSE+=" Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 MIT Unicode-DFS-2016 Unlicense"
+# Dependent crate licenses
+LICENSE+="
+	Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD MIT Unicode-DFS-2016
+"
 SLOT="0"
 IUSE="postgres systemd test"
 RESTRICT="!test? ( test )"
@@ -118,6 +120,7 @@ python_install() {
 }
 
 pkg_postinst() {
+	optfeature "Improve user search for international display names" dev-python/pyicu
 	optfeature "VoIP relaying on your homeserver with turn" net-im/coturn
 
 	if [[ -z "${REPLACING_VERSIONS}" ]]; then
