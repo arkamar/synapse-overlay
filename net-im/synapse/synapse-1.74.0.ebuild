@@ -4,7 +4,6 @@
 EAPI=8
 
 PYTHON_COMPAT=( python3_{9..10} )
-DISTUTILS_SINGLE_IMPL=1
 DISTUTILS_USE_PEP517=poetry
 
 CRATES="
@@ -95,47 +94,43 @@ DEPEND="
 	acct-group/synapse
 "
 RDEPEND="${DEPEND}
-	$(python_gen_cond_dep '
-		dev-python/attrs[${PYTHON_USEDEP}]
-		dev-python/bcrypt[${PYTHON_USEDEP}]
-		dev-python/bleach[${PYTHON_USEDEP}]
-		dev-python/canonicaljson[${PYTHON_USEDEP}]
-		dev-python/cryptography[${PYTHON_USEDEP}]
-		dev-python/frozendict[${PYTHON_USEDEP}]
-		dev-python/ijson[${PYTHON_USEDEP}]
-		>=dev-python/jinja-3.0[${PYTHON_USEDEP}]
-		dev-python/jsonschema[${PYTHON_USEDEP}]
-		>=dev-python/matrix-common-1.3.0[${PYTHON_USEDEP}]
-		dev-python/msgpack[${PYTHON_USEDEP}]
-		dev-python/netaddr[${PYTHON_USEDEP}]
-		dev-python/packaging[${PYTHON_USEDEP}]
-		dev-python/phonenumbers[${PYTHON_USEDEP}]
-		dev-python/pillow[${PYTHON_USEDEP},webp]
-		dev-python/prometheus_client[${PYTHON_USEDEP}]
-		dev-python/pyasn1-modules[${PYTHON_USEDEP}]
-		dev-python/pyasn1[${PYTHON_USEDEP}]
-		dev-python/pydantic[${PYTHON_USEDEP}]
-		dev-python/pymacaroons[${PYTHON_USEDEP}]
-		dev-python/pyopenssl[${PYTHON_USEDEP}]
-		dev-python/pyyaml[${PYTHON_USEDEP}]
-		dev-python/service_identity[${PYTHON_USEDEP}]
-		dev-python/signedjson[${PYTHON_USEDEP}]
-		dev-python/sortedcontainers[${PYTHON_USEDEP}]
-		dev-python/treq[${PYTHON_USEDEP}]
-		dev-python/twisted[${PYTHON_USEDEP}]
-		dev-python/typing-extensions[${PYTHON_USEDEP}]
-		dev-python/unpaddedbase64[${PYTHON_USEDEP}]
-		postgres? ( dev-python/psycopg:2[${PYTHON_USEDEP}] )
-		systemd? ( dev-python/python-systemd[${PYTHON_USEDEP}] )
-	')
+	dev-python/attrs[${PYTHON_USEDEP}]
+	dev-python/bcrypt[${PYTHON_USEDEP}]
+	dev-python/bleach[${PYTHON_USEDEP}]
+	dev-python/canonicaljson[${PYTHON_USEDEP}]
+	dev-python/cryptography[${PYTHON_USEDEP}]
+	dev-python/frozendict[${PYTHON_USEDEP}]
+	dev-python/ijson[${PYTHON_USEDEP}]
+	>=dev-python/jinja-3.0[${PYTHON_USEDEP}]
+	dev-python/jsonschema[${PYTHON_USEDEP}]
+	>=dev-python/matrix-common-1.3.0[${PYTHON_USEDEP}]
+	dev-python/msgpack[${PYTHON_USEDEP}]
+	dev-python/netaddr[${PYTHON_USEDEP}]
+	dev-python/packaging[${PYTHON_USEDEP}]
+	dev-python/phonenumbers[${PYTHON_USEDEP}]
+	dev-python/pillow[${PYTHON_USEDEP},webp]
+	dev-python/prometheus_client[${PYTHON_USEDEP}]
+	dev-python/pyasn1-modules[${PYTHON_USEDEP}]
+	dev-python/pyasn1[${PYTHON_USEDEP}]
+	dev-python/pydantic[${PYTHON_USEDEP}]
+	dev-python/pymacaroons[${PYTHON_USEDEP}]
+	dev-python/pyopenssl[${PYTHON_USEDEP}]
+	dev-python/pyyaml[${PYTHON_USEDEP}]
+	dev-python/service_identity[${PYTHON_USEDEP}]
+	dev-python/signedjson[${PYTHON_USEDEP}]
+	dev-python/sortedcontainers[${PYTHON_USEDEP}]
+	dev-python/treq[${PYTHON_USEDEP}]
+	dev-python/twisted[${PYTHON_USEDEP}]
+	dev-python/typing-extensions[${PYTHON_USEDEP}]
+	dev-python/unpaddedbase64[${PYTHON_USEDEP}]
+	postgres? ( dev-python/psycopg:2[${PYTHON_USEDEP}] )
+	systemd? ( dev-python/python-systemd[${PYTHON_USEDEP}] )
 "
 BDEPEND="
-	$(python_gen_cond_dep 'dev-python/setuptools-rust[${PYTHON_USEDEP}]')
+	dev-python/setuptools-rust[${PYTHON_USEDEP}]
 	test? (
-		$(python_gen_cond_dep '
-			dev-python/idna[${PYTHON_USEDEP}]
-			dev-python/parameterized[${PYTHON_USEDEP}]
-		')
+		dev-python/idna[${PYTHON_USEDEP}]
+		dev-python/parameterized[${PYTHON_USEDEP}]
 		postgres? ( dev-db/postgresql[server] )
 	)
 "
